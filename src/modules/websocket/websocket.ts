@@ -1,4 +1,4 @@
-import { Server } from 'socket.io';
+import { Server, Socket } from 'socket.io';
 
 const WEBSOCKET_CORS = {
     origin: "*",
@@ -23,6 +23,18 @@ class Websocket extends Server {
 
         return Websocket.io;
 
+    }
+
+    public initializeHandlers(socketHandlers: Array<any>) {
+        socketHandlers.forEach(element => {
+            let namespace = Websocket.io.of(element.path, (socket: Socket) => {
+                element.handler.handleConnection(socket);
+            });
+
+            if (element.handler.middlewareImplementation) {
+                namespace.use(element.handler.middlewareImplementation);
+            }
+        });
     }
 }
 

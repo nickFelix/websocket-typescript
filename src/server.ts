@@ -7,6 +7,7 @@ import {
 import { createServer } from 'http';
 
 import Websocket from './modules/websocket/websocket';
+import OrdersSocket from './modules/websocket/orders.socket';
 
 const port = process.env.APP_PORT || 3000;
 
@@ -21,6 +22,10 @@ const routingControllerOptions: RoutingControllersOptions = {
 const app = createExpressServer(routingControllerOptions);
 const httpServer = createServer(app);
 const io = Websocket.getInstance(httpServer);
+
+io.initializeHandlers([
+    { path: '/orders', handler: new OrdersSocket() }
+]);
 
 app.listen(port, () => {
     console.log(`This is working in port ${port}`);
