@@ -27,6 +27,6 @@ io.initializeHandlers([
     { path: '/orders', handler: new OrdersSocket() }
 ]);
 
-app.listen(port, () => {
+httpServer.listen(port, () => {
     console.log(`This is working in port ${port}`);
 });
