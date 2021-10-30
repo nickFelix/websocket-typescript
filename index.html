@@ -11,9 +11,9 @@
     <script src="https://cdn.socket.io/4.2.0/socket.io.js"></script>
     <script>
       const socket = io("http://localhost:3000/orders");
-      socket.on("connect", () => {
-        socket.emit("ping", "HAHA fart!");
-        document.querySelector('.msg').innerHTML = 'We are connected to our local socket!';
+      
+      socket.on('ping', (msg) => {
+        document.querySelector('.msg').innerHTML = msg;
       });
 
       socket.on('disconnect', () => {
