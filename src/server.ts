@@ -1,4 +1,5 @@
 require('dotenv').config()
+import 'reflect-metadata';
 
 import {
     createExpressServer,
@@ -13,7 +14,7 @@ const port = process.env.APP_PORT || 3000;
 
 const routingControllerOptions: RoutingControllersOptions = {
     routePrefix: 'v1',
-    controllers: [`${__dirname}/modules/http/controllers/*.controller.*`],
+    controllers: [`${__dirname}/modules/http/*.controller.*`],
     classTransformer: true,
     cors: true,
     defaultErrorHandler: true
