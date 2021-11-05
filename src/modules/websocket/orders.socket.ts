@@ -5,7 +5,7 @@ class OrdersSocket implements MySocketInterface {
 
     handleConnection(socket: Socket) {
 
-        socket.emit('ping', 'HAHA fart!');
+        socket.emit('ping', 'Hi! I am a live socket connection');
 
     }
 
